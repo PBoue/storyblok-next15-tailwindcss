@@ -1,10 +1,7 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "next/typescript"
-  ],
-"rules": {
-    "@typescript-eslint/no-explicit-any": ["off"]
-},
-"ignorePatterns": ["src/components/component-types-sb.d.ts"]
+	"extends": ["next/core-web-vitals", "next/typescript"],
+	"rules": {
+		"@typescript-eslint/no-explicit-any": ["off"]
+	},
+	"ignorePatterns": ["src/types/component-types-sb.d.ts"]
 }

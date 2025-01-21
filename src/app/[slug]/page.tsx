@@ -10,12 +10,12 @@ async function fetchData(slug: string) {
 	return storyblokApi.get(
 		'cdn/stories/' + slug,
 		{
-			version: 'draft',
-			//cv: new Date().getTime()
+			version: process.env.SB_VERSION as 'published' | 'draft' | undefined,
 		},
 		{ cache: 'no-store' }
 	)
 }
+
 async function fetchDataSpace() {
 	const storyblokApi = getStoryblokApi()
 	return storyblokApi.get('cdn/spaces/me')
@@ -28,17 +28,12 @@ export default async function StoryPage({
 }) {
 	const slug = (await params).slug
 
-	const [dataResponseStory, dataResponseSpace] = await Promise.all([
-		fetchData(slug),
-		fetchDataSpace(),
-	])
-	const dataStory = dataResponseStory.data.story
-	const dataSpace = dataResponseSpace.data.space
+	const { data } = await fetchData(slug)
 
 	return (
 		<div className="">
 			<main className="">
-				<StoryblokStory story={dataStory} />
+				<StoryblokStory story={data.story} />
 			</main>
 		</div>
 	)

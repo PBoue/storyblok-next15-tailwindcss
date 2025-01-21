@@ -1,12 +1,15 @@
 {
 	"name": "nextjs15-storyblok-tailwindcss",
 	"version": "1.0.0",
-	"private": true,
+	"private": false,
 	"scripts": {
 		"dev": "next dev",
+		"proxy": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"pull-sb-components": "storyblok pull-components --space 321718",
+		"generate-sb-types": "storyblok generate-typescript-typedefs --sourceFilePaths ./components.321718.json --destinationFilePath ./src/types/component-types-sb.d.ts"
 	},
 	"dependencies": {
 		"@storyblok/react": "^4.3.4",
